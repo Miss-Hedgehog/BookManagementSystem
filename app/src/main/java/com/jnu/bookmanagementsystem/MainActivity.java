@@ -24,7 +24,6 @@ import com.jnu.bookmanagementsystem.data.DataSaver;
 
 import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
-
     public static final int MENU_ID_ADD = 1;
     public static final int MENU_ID_UPDATE = 2;
     public static final int MENU_ID_DELETE = 3;
@@ -39,9 +38,13 @@ public class MainActivity extends AppCompatActivity {
                     {
                         Bundle bundle=intent.getExtras();
                         String title= bundle.getString("title");
-                        double price=bundle.getDouble("price");
+                        String author=bundle.getString("author");
+                        String translator=bundle.getString("translator");
+                        String publisher=bundle.getString("publisher");
+                        String pubdate=bundle.getString("pubdate");
+                        String isbn=bundle.getString("isbn");
                         int position=bundle.getInt("position");
-                        shopItems.add(position, new ShopItem(title,price,R.drawable.book_no_name) );
+                        shopItems.add(position, new ShopItem(title,author,translator,publisher,pubdate,isbn,R.drawable.book_no_name) );
                         new DataSaver().Save(this,shopItems);
                         mainRecycleViewAdapter.notifyItemInserted(position);
                     }
@@ -55,10 +58,18 @@ public class MainActivity extends AppCompatActivity {
                     {
                         Bundle bundle=intent.getExtras();
                         String title= bundle.getString("title");
-                        double price=bundle.getDouble("price");
+                        String author=bundle.getString("author");
+                        String translator=bundle.getString("translator");
+                        String publisher=bundle.getString("publisher");
+                        String pubdate=bundle.getString("pubdate");
+                        String isbn=bundle.getString("isbn");
                         int position=bundle.getInt("position");
                         shopItems.get(position).setTitle(title);
-                        shopItems.get(position).setPrice(price);
+                        shopItems.get(position).setAuthor(author);
+                        shopItems.get(position).setTranslator(translator);
+                        shopItems.get(position).setPublisher(publisher);
+                        shopItems.get(position).setPubDate(pubdate);
+                        shopItems.get(position).setIsbn(isbn);
                         new DataSaver().Save(this,shopItems);
                         mainRecycleViewAdapter.notifyItemChanged(position);
                     }
@@ -81,7 +92,9 @@ public class MainActivity extends AppCompatActivity {
         shopItems=dataSaver.Load(this);
 
         if(shopItems.size()==0) {
-            shopItems.add(new ShopItem("item 0", Math.random() * 10, R.drawable.book_1));
+            shopItems.add(new ShopItem(" 《信息安全数学基础》 "," 聂旭云 著， "," 科学出版社 "," translator1 ","        2022-11-4 "," isbn1 ", R.drawable.book_1));
+            shopItems.add(new ShopItem(" 《软件项目管理案例教程》 "," 韩万江 著， "," 机械工业出版社 "," translator2 ","        2022-11-4 "," isbn2 ", R.drawable.book_2));
+
         }
         mainRecycleViewAdapter= new MainRecycleViewAdapter(shopItems);
         recyclerViewMain.setAdapter(mainRecycleViewAdapter);
@@ -100,7 +113,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentUpdate=new Intent(this, EditBookActivity.class);
                 intentUpdate.putExtra("position",item.getOrder());
                 intentUpdate.putExtra("title",shopItems.get(item.getOrder()).getTitle());
-                intentUpdate.putExtra("price",shopItems.get(item.getOrder()).getPrice());
+                intentUpdate.putExtra("author",shopItems.get(item.getOrder()).getAuthor());
+                intentUpdate.putExtra("translator",shopItems.get(item.getOrder()).getTranslator());
+                intentUpdate.putExtra("publisher",shopItems.get(item.getOrder()).getPublisher());
+                intentUpdate.putExtra("pubdate",shopItems.get(item.getOrder()).getPubDate());
+                intentUpdate.putExtra("isbn",shopItems.get(item.getOrder()).getIsbn());
                 updateDataLauncher.launch(intentUpdate);
                 break;
             case MENU_ID_DELETE:
@@ -132,21 +149,21 @@ public class MainActivity extends AppCompatActivity {
         private ArrayList<ShopItem> localDataSet;
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
             private final TextView textViewTitle;
-
-            public TextView getTextViewPrice() {
-                return textViewPrice;
-            }
-
-            private final TextView textViewPrice;
+            private final TextView textViewAuthor;
+            private final TextView textViewTranslator;
+            private final TextView textViewPublisher;
+            private final TextView textViewPubDate;
+            private final TextView textViewIsbn;
             private final ImageView imageViewImage;
-
             public ViewHolder(View view) {
                 super(view);
-                // Define click listener for the ViewHolder's View
-
                 imageViewImage = view.findViewById(R.id.imageview_item_image);
-                textViewTitle = view.findViewById(R.id.textView_item_caption);
-                textViewPrice = view.findViewById(R.id.textView_item_price);
+                textViewTitle = view.findViewById(R.id.textView_item_title);
+                textViewAuthor = view.findViewById(R.id.textView_item_author);
+                textViewTranslator = view.findViewById(R.id.textView_item_translator);
+                textViewPublisher = view.findViewById(R.id.textView_item_publisher);
+                textViewPubDate = view.findViewById(R.id.textView_item_pubDate);
+                textViewIsbn = view.findViewById(R.id.textView_item_isbn);
 
                 view.setOnCreateContextMenuListener(this);
             }
@@ -154,10 +171,23 @@ public class MainActivity extends AppCompatActivity {
             public TextView getTextViewTitle() {
                 return textViewTitle;
             }
-
+            public TextView getTextViewAuthor() {
+                return textViewAuthor;
+            }
+            public TextView getTextViewTranslator() {
+                return textViewTranslator;
+            }
+            public TextView getTextViewPublisher() {
+                return textViewPublisher;
+            }
+            public TextView getTextViewPubDate() {
+                return textViewPubDate;
+            }
+            public TextView getTextViewIsbn() {return textViewIsbn;}
             public ImageView getImageViewImage() {
                 return imageViewImage;
             }
+
 
             @Override
             public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
@@ -174,17 +204,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         @NonNull
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-            // Create a new view, which defines the UI of the list item
             View view = LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.item_main, viewGroup, false);
-
             return new ViewHolder(view);
         }
         @Override
         public void onBindViewHolder(ViewHolder viewHolder, final int position) {
             viewHolder.getTextViewTitle().setText(localDataSet.get(position).getTitle());
-            viewHolder.getTextViewPrice().setText(localDataSet.get(position).getPrice().toString());
+            viewHolder.getTextViewAuthor().setText(localDataSet.get(position).getAuthor());
+            viewHolder.getTextViewPublisher().setText(localDataSet.get(position).getPublisher());
+            viewHolder.getTextViewPubDate().setText(localDataSet.get(position).getPubDate());
             viewHolder.getImageViewImage().setImageResource(localDataSet.get(position).getResourceId());
+            //viewHolder.getTextViewTranslator().setText(localDataSet.get(position).getTranslator());
+            //viewHolder.getTextViewIsbn().setText(localDataSet.get(position).getPubDate());
         }
         @Override
         public int getItemCount() {
