@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BookManagementSystem</string>
+    <string name="recycle_view">20220928</string>
+    <string name="confirmation">confirmation</string>
+    <string name="ask_if_to_delete">Are you sure to delete this book?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_title">title</string>
+    <string name="str_name">name</string>
+    <string name="str_price">price</string>
+    <string name="not_to_delete">NO</string>
+    <string name="yes_to_delete">YES</string>
+</resources>
