@@ -17,8 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jnu.bookmanagementsystem.data.ShopItem;
 import com.jnu.bookmanagementsystem.data.DataSaver;
 
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                         String pubdate=bundle.getString("pubdate");
                         String isbn=bundle.getString("isbn");
                         int position=bundle.getInt("position");
-                        shopItems.add(position, new ShopItem(title,author,translator,publisher,pubdate,isbn,R.drawable.book_no_name) );
+                        shopItems.add(position, new ShopItem(title,author,translator,publisher,pubdate,isbn, R.drawable.book3) );
                         new DataSaver().Save(this,shopItems);
                         mainRecycleViewAdapter.notifyItemInserted(position);
                     }
@@ -79,23 +82,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
         RecyclerView recyclerViewMain=findViewById(R.id.recycle_view_main);
-
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewMain.setLayoutManager(linearLayoutManager);
-
         DataSaver dataSaver=new DataSaver();
         shopItems=dataSaver.Load(this);
-
         if(shopItems.size()==0) {
             shopItems.add(new ShopItem(" 《信息安全数学基础》 "," 聂旭云 著， "," 科学出版社 "," translator1 ","        2022-11-4 "," isbn1 ", R.drawable.book_1));
             shopItems.add(new ShopItem(" 《软件项目管理案例教程》 "," 韩万江 著， "," 机械工业出版社 "," translator2 ","        2022-11-4 "," isbn2 ", R.drawable.book_2));
-
         }
+        //2022/11/5添加悬浮按钮实现图书的添加
+        Intent intent=new Intent(this, EditBookActivity.class);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_item_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"add book clicked",Toast.LENGTH_SHORT).show();
+                intent.putExtra("position",shopItems.size());
+                addDataLauncher.launch(intent);
+            }
+        });
         mainRecycleViewAdapter= new MainRecycleViewAdapter(shopItems);
         recyclerViewMain.setAdapter(mainRecycleViewAdapter);
     }
@@ -155,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             private final TextView textViewPubDate;
             private final TextView textViewIsbn;
             private final ImageView imageViewImage;
+
             public ViewHolder(View view) {
                 super(view);
                 imageViewImage = view.findViewById(R.id.imageview_item_image);
@@ -171,32 +180,38 @@ public class MainActivity extends AppCompatActivity {
             public TextView getTextViewTitle() {
                 return textViewTitle;
             }
+
             public TextView getTextViewAuthor() {
                 return textViewAuthor;
             }
+
             public TextView getTextViewTranslator() {
                 return textViewTranslator;
             }
+
             public TextView getTextViewPublisher() {
                 return textViewPublisher;
             }
+
             public TextView getTextViewPubDate() {
                 return textViewPubDate;
             }
-            public TextView getTextViewIsbn() {return textViewIsbn;}
+
+            public TextView getTextViewIsbn() {
+                return textViewIsbn;
+            }
             public ImageView getImageViewImage() {
                 return imageViewImage;
             }
 
-
             @Override
             public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-                contextMenu.add(0,MENU_ID_ADD,getAdapterPosition(),"Add "+getAdapterPosition());
-                contextMenu.add(0,MENU_ID_UPDATE,getAdapterPosition(),"Update "+getAdapterPosition());
-                contextMenu.add(0,MENU_ID_DELETE,getAdapterPosition(),"Delete "+getAdapterPosition());
+                contextMenu.add(0, MENU_ID_ADD, getAdapterPosition(), "Add book here");
+                contextMenu.add(0, MENU_ID_UPDATE, getAdapterPosition(), "Update this book");
+                contextMenu.add(0, MENU_ID_DELETE, getAdapterPosition(), "Delete this book");
+                //contextMenu.add(0, MENU_ID_DELETE, getAdapterPosition(), "Delete this book. " + getAdapterPosition());
             }
         }
-
         public MainRecycleViewAdapter(ArrayList<ShopItem> dataSet) {
             localDataSet = dataSet;
         }
