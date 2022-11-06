@@ -11,4 +11,7 @@
     <string name="not_to_delete">NO</string>
     <string name="yes_to_delete">YES</string>
     <string name="add_item_fab">add clicked</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_exit">Exit</string>
+    <string name="edit">Edit Book Details</string>
 </resources>

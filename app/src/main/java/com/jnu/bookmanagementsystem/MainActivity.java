@@ -8,10 +8,14 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int MENU_ID_DELETE = 3;
     private ArrayList<ShopItem> shopItems;
     private MainRecycleViewAdapter mainRecycleViewAdapter;
+    private DrawerLayout drawerLayout;//滑动菜单
 
     private ActivityResultLauncher<Intent> addDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
             ,result -> {
@@ -83,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         RecyclerView recyclerViewMain=findViewById(R.id.recycle_view_main);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -93,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             shopItems.add(new ShopItem(" 《信息安全数学基础》 "," 聂旭云 著， "," 科学出版社 "," translator1 ","        2022-11-4 "," isbn1 ", R.drawable.book_1));
             shopItems.add(new ShopItem(" 《软件项目管理案例教程》 "," 韩万江 著， "," 机械工业出版社 "," translator2 ","        2022-11-4 "," isbn2 ", R.drawable.book_2));
         }
+
         //2022/11/5添加悬浮按钮实现图书的添加
         Intent intent=new Intent(this, EditBookActivity.class);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_item_fab);
@@ -104,6 +111,12 @@ public class MainActivity extends AppCompatActivity {
                 addDataLauncher.launch(intent);
             }
         });
+
+        /*
+        //2022/11/6工具栏按钮点击显示左侧抽屉式菜单(有点问题)
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));*/
+
         mainRecycleViewAdapter= new MainRecycleViewAdapter(shopItems);
         recyclerViewMain.setAdapter(mainRecycleViewAdapter);
     }
@@ -238,4 +251,31 @@ public class MainActivity extends AppCompatActivity {
             return localDataSet.size();
         }
     }
+
+    //2022/11/6选项菜单option menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_login:
+                Toast.makeText(this,"登陆", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_exit:
+                Toast.makeText(this,"退出", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+
+
 }
