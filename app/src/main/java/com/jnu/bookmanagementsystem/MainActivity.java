@@ -111,9 +111,9 @@ public class MainActivity extends AppCompatActivity {
                 addDataLauncher.launch(intent);
             }
         });
-
         /*
-        //2022/11/6工具栏按钮点击显示左侧抽屉式菜单(有点问题)
+        //抽屉菜单的toolbar(成功实现)
+        drawerLayout=findViewById(R.id.book_drawer_layout);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));*/
 
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
     //2022/11/6选项菜单option menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        this.getMenuInflater().inflate(R.menu.main_menu,menu);
         return true;
     }
     @Override

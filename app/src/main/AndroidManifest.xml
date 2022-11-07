@@ -18,7 +18,7 @@
             android:name=".EditBookActivity"
             android:exported="false" />
         <activity
-            android:label=""
+            android:label="BookManagementSystem"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
