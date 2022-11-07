@@ -111,11 +111,12 @@ public class MainActivity extends AppCompatActivity {
                 addDataLauncher.launch(intent);
             }
         });
-        /*
-        //抽屉菜单的toolbar(成功实现)
+
+        //抽屉菜单的toolbar(成功实现)2022/11/7
         drawerLayout=findViewById(R.id.book_drawer_layout);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));*/
+        toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
+
 
         mainRecycleViewAdapter= new MainRecycleViewAdapter(shopItems);
         recyclerViewMain.setAdapter(mainRecycleViewAdapter);
