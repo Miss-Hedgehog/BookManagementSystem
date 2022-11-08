@@ -10,7 +10,7 @@
             android:icon="@drawable/icon_search"
             android:title="Search" />
     </group>
-    <!--
+
     <item android:title="Labels">
         <menu>
             <item
@@ -44,7 +44,5 @@
                 android:title="Share" />
         </menu>
     </item>
-    -->
-
 
 </menu>
