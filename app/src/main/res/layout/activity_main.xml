@@ -44,14 +44,13 @@
         app:srcCompat="@android:drawable/ic_input_add"
         tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
+    <!--滑动导航视图-->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@drawable/backg1"
-        android:gravity="center">
-    </LinearLayout>
-
-
+        android:background="@drawable/backg3"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        android:layout_gravity="start" />
 </androidx.drawerlayout.widget.DrawerLayout>

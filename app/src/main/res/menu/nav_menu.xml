@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_books"
+            android:icon="@drawable/icon_books"
+            android:title="Books" />
+        <item
+            android:id="@+id/item_search"
+            android:icon="@drawable/icon_search"
+            android:title="Search" />
+    </group>
+    <!--
+    <item android:title="Labels">
+        <menu>
+            <item
+                android:id="@+id/item_law"
+                android:icon="@drawable/icon_label"
+                android:title="Law" />
+            <item
+                android:id="@+id/item_art"
+                android:icon="@drawable/icon_label"
+                android:title="Art" />
+            <item
+                android:id="@+id/item_create_label"
+                android:icon="@drawable/icon_create_label"
+                android:title="Create new labels" />
+        </menu>
+    </item>
+
+    <item android:title="Extensions">
+        <menu>
+            <item
+                android:id="@+id/item_settings"
+                android:icon="@drawable/icon_settings"
+                android:title="Settings" />
+            <item
+                android:id="@+id/item_about"
+                android:icon="@drawable/icon_about"
+                android:title="About" />
+            <item
+                android:id="@+id/item_share"
+                android:icon="@drawable/icon_share"
+                android:title="Share" />
+        </menu>
+    </item>
+    -->
+
+
+</menu>
