@@ -14,4 +14,13 @@
     <string name="menu_login">Login</string>
     <string name="menu_exit">Exit</string>
     <string name="edit">Edit Book Details</string>
+    <string name="separator_text_view">Details</string>
+    <string name="edit_book_details">Details</string>
+    <string name="edit_book_status">Reading</string>
+    <string name="edit_bookshelf">Default BookShelf</string>
+    <string name="edit_book_note">Notes</string>
+    <string name="note_edit_text_hint">Notes</string>
+    <string name="edit_book_label">Law</string>
+    <string name="edit_book_netlink">netlink</string>
+    <string name="edit_book_netlink_hint">http://book.douban.com</string>
 </resources>

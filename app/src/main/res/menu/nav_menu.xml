@@ -18,10 +18,6 @@
                 android:icon="@drawable/icon_label"
                 android:title="Law" />
             <item
-                android:id="@+id/item_art"
-                android:icon="@drawable/icon_label"
-                android:title="Art" />
-            <item
                 android:id="@+id/item_create_label"
                 android:icon="@drawable/icon_create_label"
                 android:title="Create new labels" />

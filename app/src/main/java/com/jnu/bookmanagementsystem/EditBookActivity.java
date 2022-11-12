@@ -21,7 +21,7 @@ public class EditBookActivity extends AppCompatActivity {
         EditText editTextIsbn=findViewById(R.id.edittext_shop_item_isbn);
 
         Button buttonSure=findViewById(R.id.button_ok);
-        Button buttonCancel=findViewById(R.id.button_no);
+        //Button buttonCancel=findViewById(R.id.button_no);
         String title=this.getIntent().getStringExtra("title");
         String author=this.getIntent().getStringExtra("author");
         String publisher=this.getIntent().getStringExtra("publisher");
@@ -57,11 +57,12 @@ public class EditBookActivity extends AppCompatActivity {
                 EditBookActivity.this.finish();
             }
         });
+        /*
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditBookActivity.this.finish();
             }
-        });
+        });*/
     }
 }

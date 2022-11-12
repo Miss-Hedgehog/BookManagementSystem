@@ -7,7 +7,12 @@
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/ic_launcher_background.xml" value="0.208" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/icon_books.xml" value="0.1" />
+        <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/icon_edit_bookshelf.xml" value="0.1" />
+        <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/icon_edit_label.xml" value="0.1" />
+        <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/icon_edit_netlink.xml" value="0.1" />
+        <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/icon_edit_note.xml" value="0.1" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/icon_friend.xml" value="0.1" />
+        <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/icon_label.xml" value="0.1" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/icon_menu.xml" value="0.2105" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/icon_search.xml" value="0.1" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/drawable/icon_settings.xml" value="0.1" />
@@ -15,6 +20,7 @@
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/layout/activity_main.xml" value="0.23822463768115942" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/layout/icon_about.xml" value="0.1802536231884058" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/layout/icon_books.xml" value="0.1802536231884058" />
+        <entry key="..\:/code/BookManagementSystem/app/src/main/res/layout/icon_edit_reading.xml" value="0.1802536231884058" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/layout/icon_email.xml" value="0.1802536231884058" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/layout/icon_send.xml" value="0.1802536231884058" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/layout/icon_settings.xml" value="0.1802536231884058" />
@@ -27,6 +33,7 @@
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/layout/styles.xml" value="0.1802536231884058" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/layout/title_main.xml" value="0.17239583333333333" />
         <entry key="..\:/code/BookManagementSystem/app/src/main/res/menu/main_menu.xml" value="0.21145833333333333" />
+        <entry key="..\:/code/BookManagementSystem/app/src/main/res/menu/nav_menu.xml" value="0.19947916666666668" />
       </map>
     </option>
   </component>
