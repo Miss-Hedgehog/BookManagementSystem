@@ -29,7 +29,7 @@
             android:id="@+id/toolbar_search"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginStart="300dp"
+            android:layout_marginStart="350dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:navigationIcon="@drawable/icon_title_search"
@@ -40,7 +40,7 @@
             android:id="@+id/toolbar_down"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginStart="200dp"
+            android:layout_marginStart="170dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:navigationIcon="@drawable/icon_title_down"
@@ -51,10 +51,21 @@
             android:id="@+id/toolbar_all"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="90dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:navigationIcon="@drawable/icon_title_all"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="105dp" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_scan"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:navigationIcon="@drawable/icon_title_scan"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="105dp" />
 
