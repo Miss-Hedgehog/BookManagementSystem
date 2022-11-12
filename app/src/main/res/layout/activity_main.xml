@@ -36,6 +36,28 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="105dp" />
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_down"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:navigationIcon="@drawable/icon_title_down"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="105dp" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_all"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:navigationIcon="@drawable/icon_title_all"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="105dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view_main"
             android:layout_width="match_parent"
