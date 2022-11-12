@@ -26,6 +26,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.jnu.bookmanagementsystem.data.ShopItem;
 import com.jnu.bookmanagementsystem.data.DataSaver;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<ShopItem> shopItems;
     private MainRecycleViewAdapter mainRecycleViewAdapter;
     private DrawerLayout drawerLayout;//滑动菜单
+
 
     private ActivityResultLauncher<Intent> addDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
             ,result -> {
@@ -117,7 +119,53 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
-
+        //2022/11/12 抽屉式菜单点击响应函数
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.item_books:
+                        Toast.makeText(MainActivity.this,"Books clicked!Back to bookshelf!", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.item_search:
+                        Toast.makeText(MainActivity.this,"Search clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.item_law:
+                        Toast.makeText(MainActivity.this,"Law clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.item_create_label:
+                        Toast.makeText(MainActivity.this,"Create new labels clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.item_settings:
+                        Toast.makeText(MainActivity.this,"Settings clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.item_about:
+                        AlertDialog alertDialog;
+                        alertDialog = new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("About")
+                                .setMessage("BookShelf,Manage your books!")
+                                .setPositiveButton("Back", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                }).setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                }).create();
+                        alertDialog.show();
+                        break;
+                    case R.id.item_share:
+                        Toast.makeText(MainActivity.this,"Share clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
+                return false;
+            }
+        });
         mainRecycleViewAdapter= new MainRecycleViewAdapter(shopItems);
         recyclerViewMain.setAdapter(mainRecycleViewAdapter);
     }
@@ -253,6 +301,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     //2022/11/6选项菜单option menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -273,10 +322,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
-
 
 }
