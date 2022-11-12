@@ -16,13 +16,26 @@
             tools:layout_editor_absoluteY="2dp" />
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_openDrawer"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:navigationIcon="@drawable/icon_menu"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="-16dp"
             tools:layout_editor_absoluteY="105dp" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_search"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:navigationIcon="@drawable/icon_title_search"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="105dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view_main"
             android:layout_width="match_parent"
@@ -43,7 +56,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_input_add"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+            android:focusable="true" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!--滑动导航视图-->
     <com.google.android.material.navigation.NavigationView

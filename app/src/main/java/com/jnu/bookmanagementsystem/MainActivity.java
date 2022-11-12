@@ -116,10 +116,10 @@ public class MainActivity extends AppCompatActivity {
 
         //抽屉菜单的toolbar(成功实现)2022/11/7
         drawerLayout=findViewById(R.id.book_drawer_layout);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_openDrawer);
         toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
-        //2022/11/12 抽屉式菜单点击响应函数
+        //2022/11/12 抽屉式菜单点击响应函数,未完成
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
