@@ -39,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private MainRecycleViewAdapter mainRecycleViewAdapter;
     private DrawerLayout drawerLayout;//滑动菜单
 
-
-    private ActivityResultLauncher<Intent> addDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
+    private  ActivityResultLauncher<Intent> addDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
             ,result -> {
                 if(null!=result){
                     Intent intent=result.getData();
@@ -98,39 +97,51 @@ public class MainActivity extends AppCompatActivity {
         DataSaver dataSaver=new DataSaver();
         shopItems=dataSaver.Load(this);
         if(shopItems.size()==0) {
-            shopItems.add(new ShopItem(" 《信息安全数学基础》 "," 聂旭云 著， "," 科学出版社 "," translator1 ","        2022-11-4 "," isbn1 ", R.drawable.book_1));
-            shopItems.add(new ShopItem(" 《软件项目管理案例教程》 "," 韩万江 著， "," 机械工业出版社 "," translator2 ","        2022-11-4 "," isbn2 ", R.drawable.book_2));
+            shopItems.add(new ShopItem("信息安全数学基础"," 聂旭云 著， "," 科学出版社 "," translator1 ","        2022-11-4 "," isbn1 ", R.drawable.book_1));
+            shopItems.add(new ShopItem("软件项目管理案例教程"," 韩万江 著， "," 机械工业出版社 "," translator2 ","        2022-11-4 "," isbn2 ", R.drawable.book_2));
         }
 
         //2022/11/5添加悬浮按钮实现图书的添加
-        Intent intent=new Intent(this, EditBookActivity.class);
+        Intent intent_add=new Intent(this, EditBookActivity.class);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_item_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this,"add book clicked",Toast.LENGTH_SHORT).show();
-                intent.putExtra("position",shopItems.size());
-                addDataLauncher.launch(intent);
+                intent_add.putExtra("position",shopItems.size());
+                addDataLauncher.launch(intent_add);
             }
         });
 
-        //抽屉菜单的toolbar(成功实现)2022/11/7
+        //抽屉菜单的toolbar(成功实现)2022/11/7,点击对应toolBar打开抽屉菜单
         drawerLayout=findViewById(R.id.book_drawer_layout);
-        Toolbar toolbar = findViewById(R.id.toolbar_openDrawer);
-        toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
+        Toolbar toolbar_openDrawer = findViewById(R.id.toolbar_openDrawer);
+        toolbar_openDrawer.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
-        //2022/11/12 抽屉式菜单点击响应函数,未完成
+
+        //在标题栏上用来搜索的toolBar,实现一个简单的搜索功能
+        Toolbar toolbar_search = findViewById(R.id.toolbar_search);
+        toolbar_search.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+            }
+        });
+
+        //2022/11/12 抽屉式菜单点击各个菜单项的响应函数
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
+                    //点击返回主书架界面
                     case R.id.item_books:
                         Toast.makeText(MainActivity.this,"Books clicked!Back to bookshelf!", Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.item_search:
-                        Toast.makeText(MainActivity.this,"Search clicked", Toast.LENGTH_SHORT).show();
+                        //跳转至搜索界面
+                        startActivity(new Intent(MainActivity.this, SearchActivity.class));
                         break;
                     case R.id.item_law:
                         Toast.makeText(MainActivity.this,"Law clicked", Toast.LENGTH_SHORT).show();
@@ -166,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
         mainRecycleViewAdapter= new MainRecycleViewAdapter(shopItems);
         recyclerViewMain.setAdapter(mainRecycleViewAdapter);
     }
@@ -188,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 intentUpdate.putExtra("publisher",shopItems.get(item.getOrder()).getPublisher());
                 intentUpdate.putExtra("pubdate",shopItems.get(item.getOrder()).getPubDate());
                 intentUpdate.putExtra("isbn",shopItems.get(item.getOrder()).getIsbn());
+                intentUpdate.putExtra("imageid",shopItems.get(item.getOrder()).getResourceId());
                 updateDataLauncher.launch(intentUpdate);
                 break;
             case MENU_ID_DELETE:

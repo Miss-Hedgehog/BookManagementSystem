@@ -23,4 +23,6 @@
     <string name="edit_book_label">Law</string>
     <string name="edit_book_netlink">netlink</string>
     <string name="edit_book_netlink_hint">http://book.douban.com</string>
+    <string name="search">Search</string>
+    <string name="search_settings">Settings</string>
 </resources>

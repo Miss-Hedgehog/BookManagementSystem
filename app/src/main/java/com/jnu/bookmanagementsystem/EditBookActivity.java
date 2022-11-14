@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+
 public class EditBookActivity extends AppCompatActivity {
     public static final int RESULT_CODE_SUCCESS = 666;
     @Override
@@ -19,15 +21,16 @@ public class EditBookActivity extends AppCompatActivity {
         EditText editTextTranslator=findViewById(R.id.edittext_shop_item_translator);
         EditText editTextPubDate=findViewById(R.id.edittext_shop_item_pub_date);
         EditText editTextIsbn=findViewById(R.id.edittext_shop_item_isbn);
+        ImageView editBookTmage=findViewById(R.id.edit_book_image);
 
         Button buttonSure=findViewById(R.id.button_ok);
-        //Button buttonCancel=findViewById(R.id.button_no);
         String title=this.getIntent().getStringExtra("title");
         String author=this.getIntent().getStringExtra("author");
         String publisher=this.getIntent().getStringExtra("publisher");
         String translator=this.getIntent().getStringExtra("translator");
         String pubdate=this.getIntent().getStringExtra("pubdate");
         String isbn=this.getIntent().getStringExtra("isbn");
+        int imageId=this.getIntent().getIntExtra("imageid",R.drawable.book_no_name);
 
         if(null!=title)
         {
@@ -37,6 +40,7 @@ public class EditBookActivity extends AppCompatActivity {
             editTextTranslator.setText(translator);
             editTextPubDate.setText(pubdate);
             editTextIsbn.setText(isbn);
+            editBookTmage.setImageResource(imageId);
         }
 
         buttonSure.setOnClickListener(new View.OnClickListener() {
@@ -57,12 +61,6 @@ public class EditBookActivity extends AppCompatActivity {
                 EditBookActivity.this.finish();
             }
         });
-        /*
-        buttonCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditBookActivity.this.finish();
-            }
-        });*/
+
     }
 }
