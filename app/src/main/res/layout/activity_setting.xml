@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/backg5"
+    android:background="@drawable/backg3"
     android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
@@ -27,6 +27,12 @@
             android:layout_height="wrap_content"
             android:text="Wi-Fi"
             style="?android:listSeparatorTextViewStyle"/>
+        <TextView
+            android:id="@+id/set_wifi_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关闭"
+            style="?android:listSeparatorTextViewStyle"/>
        <Switch
            android:id="@+id/sw_wifi"
            android:layout_width="match_parent"
@@ -48,6 +54,12 @@
             android:layout_height="wrap_content"
             android:text="蓝牙"
             style="?android:listSeparatorTextViewStyle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关闭"
+            android:id="@+id/set_bluetooth_text"
+            style="?android:listSeparatorTextViewStyle"/>
         <Switch
             android:id="@+id/sw_bluetooth"
             android:layout_width="match_parent"
@@ -58,42 +70,63 @@
         android:layout_height="match_parent"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="center"
-            android:src="@drawable/icon_set_voice"/>
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="center"
+                android:src="@drawable/icon_set_voice"/>
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="声音" />
+            <SeekBar
+                android:id="@+id/seekbar_voice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></SeekBar>
+        </LinearLayout>
         <TextView
             style="?android:listSeparatorTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="声音" />
-        <SeekBar
-            android:id="@+id/seekbar_voice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></SeekBar>
+            android:id="@+id/set_voice_text"
+            android:text="当前的声音为：" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="center"
-            android:src="@drawable/icon_set_light"/>
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="center"
+                android:src="@drawable/icon_set_light"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="亮度"
+                style="?android:listSeparatorTextViewStyle"/>
+            <SeekBar
+                android:id="@+id/seekbar_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></SeekBar>
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="亮度"
+            android:text="当前的亮度为"
+            android:id="@+id/set_light_text"
             style="?android:listSeparatorTextViewStyle"/>
-        <SeekBar
-            android:id="@+id/seekbar_light"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></SeekBar>
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
@@ -103,23 +136,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="center"
-            android:contentDescription="@string/edit_book_status"
-            android:src="@drawable/icon_set_mode"/>
-        <Spinner
-            android:id="@+id/set_ziti"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="center"
+                android:contentDescription="@string/edit_book_status"
+                android:src="@drawable/icon_set_mode"/>
+            <Spinner
+                android:id="@+id/set_ziti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:spinnerMode="dropdown"
+                android:entries="@array/spinner_set_ziti"/>
+        </LinearLayout>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:spinnerMode="dropdown"
-            android:entries="@array/spinner_set_ziti"/>
+            android:text="当前的语言为:"
+            android:id="@+id/set_ziti_text"
+            style="?android:listSeparatorTextViewStyle"/>
     </LinearLayout>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -129,21 +175,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="center"
-            android:src="@drawable/icon_set_language"/>
-        <Spinner
-            android:id="@+id/set_language"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="center"
+                android:src="@drawable/icon_set_language"/>
+            <Spinner
+                android:id="@+id/set_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:spinnerMode="dropdown"
+                android:entries="@array/spinner_set_language"/>
+        </LinearLayout>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:spinnerMode="dropdown"
-            android:entries="@array/spinner_set_language"/>
+            android:text="当前的语言为:"
+            android:id="@+id/set_language_text"
+            style="?android:listSeparatorTextViewStyle"/>
     </LinearLayout>
 
     <TextView
@@ -154,22 +211,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="center"
-            android:src="@drawable/icon_set_ziti"/>
-        <Spinner
-            android:id="@+id/set_mode"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="center"
+                android:src="@drawable/icon_set_ziti"/>
+            <Spinner
+                android:id="@+id/set_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:spinnerMode="dropdown"
+                android:entries="@array/spinner_set_mode"/>
+        </LinearLayout>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:spinnerMode="dropdown"
-            android:entries="@array/spinner_set_mode"/>
+            android:text="当前的模式为:"
+            android:id="@+id/set_mode_text"
+            style="?android:listSeparatorTextViewStyle"/>
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
