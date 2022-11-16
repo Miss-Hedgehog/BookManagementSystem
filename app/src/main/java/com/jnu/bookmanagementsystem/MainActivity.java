@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         if(shopItems.size()==0) {
             shopItems.add(new ShopItem("信息安全数学基础"," 聂旭云 著， "," 科学出版社 "," translator1 ","        2022-11-4 "," isbn1 ", R.drawable.book_1));
             shopItems.add(new ShopItem("软件项目管理案例教程"," 韩万江 著， "," 机械工业出版社 "," translator2 ","        2022-11-4 "," isbn2 ", R.drawable.book_2));
+            dataSaver.Save(this,shopItems);
         }
 
         //2022/11/5添加悬浮按钮实现图书的添加
@@ -128,30 +129,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //点击扫描条形码的toolBar，实现扫描图书的isbn
+        Toolbar toolbar_scan=findViewById(R.id.toolbar_scan);
+        toolbar_scan.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(MainActivity.this,ScanBarActivity.class));
+
+            }
+        });
+
         //2022/11/12 抽屉式菜单点击各个菜单项的响应函数
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    //点击返回主书架界面
+                    //点击返回主书架界面（已经完成）
                     case R.id.item_books:
                         Toast.makeText(MainActivity.this,"Books clicked!Back to bookshelf!", Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
+                        //跳转到搜索图书信息的界面
                     case R.id.item_search:
-                        //跳转至搜索界面
+                        Toast.makeText(MainActivity.this,"Search clicked", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, SearchActivity.class));
                         break;
+                        //某个标签
                     case R.id.item_law:
                         Toast.makeText(MainActivity.this,"Law clicked", Toast.LENGTH_SHORT).show();
                         break;
+                        //创建标签
                     case R.id.item_create_label:
                         Toast.makeText(MainActivity.this,"Create new labels clicked", Toast.LENGTH_SHORT).show();
                         break;
+                        //设置,跳转到设置界面
                     case R.id.item_settings:
                         Toast.makeText(MainActivity.this,"Settings clicked", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,SettingActivity.class));
                         break;
+                        //about，弹出对话框
                     case R.id.item_about:
                         AlertDialog alertDialog;
                         alertDialog = new AlertDialog.Builder(MainActivity.this)
@@ -168,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
                                 }).create();
                         alertDialog.show();
                         break;
+                        //分享
                     case R.id.item_share:
                         Toast.makeText(MainActivity.this,"Share clicked", Toast.LENGTH_SHORT).show();
                         break;
@@ -177,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
 
         mainRecycleViewAdapter= new MainRecycleViewAdapter(shopItems);
         recyclerViewMain.setAdapter(mainRecycleViewAdapter);

@@ -297,6 +297,4 @@
             android:textSize="18sp"
             android:hint="@string/edit_book_netlink_hint"/>
     </LinearLayout>
-
-
 </LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_edit_status">
+        <item>Reading</item>
+        <item>Unread</item>
+        <item>Read</item>
+    </string-array>
+</resources>
