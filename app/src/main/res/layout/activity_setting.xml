@@ -17,6 +17,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/icon_set_wifi" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,6 +38,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="center"
+            android:src="@drawable/icon_set_bluetooth"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,6 +59,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="center"
+            android:src="@drawable/icon_set_voice"/>
         <TextView
             style="?android:listSeparatorTextViewStyle"
             android:layout_width="wrap_content"
@@ -65,6 +80,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="center"
+            android:src="@drawable/icon_set_light"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,7 +111,7 @@
             android:layout_height="24dp"
             android:scaleType="center"
             android:contentDescription="@string/edit_book_status"
-            android:src="@drawable/icon_edit_reading"/>
+            android:src="@drawable/icon_set_mode"/>
         <Spinner
             android:id="@+id/set_ziti"
             android:layout_width="wrap_content"
@@ -106,7 +126,6 @@
         android:layout_height="wrap_content"
         android:text="语言"
         style="?android:listSeparatorTextViewStyle"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,7 +136,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:scaleType="center"
-            android:src="@drawable/icon_edit_bookshelf"/>
+            android:src="@drawable/icon_set_language"/>
         <Spinner
             android:id="@+id/set_language"
             android:layout_width="wrap_content"
@@ -142,7 +161,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:scaleType="center"
-            android:src="@drawable/icon_edit_label"/>
+            android:src="@drawable/icon_set_ziti"/>
         <Spinner
             android:id="@+id/set_mode"
             android:layout_width="wrap_content"
