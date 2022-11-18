@@ -129,13 +129,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //点击扫描条形码的toolBar，实现扫描图书的isbn
+        //点击扫描条形码的toolBar，实现扫描图书的isbn的功能
         Toolbar toolbar_scan=findViewById(R.id.toolbar_scan);
         toolbar_scan.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(MainActivity.this,ScanBarActivity.class));
-
+                startActivity(new Intent(MainActivity.this, CaptureActivity.class));
             }
         });
 
