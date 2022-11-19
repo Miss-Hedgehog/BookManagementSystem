@@ -1,6 +1,8 @@
 package com.jnu.bookmanagementsystem;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -13,16 +15,22 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.ActionProvider;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,7 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<ShopItem> shopItems;
     private MainRecycleViewAdapter mainRecycleViewAdapter;
     private DrawerLayout drawerLayout;//滑动菜单
-
+    private NavigationView navigationView ;
+    private Spinner add_label_spinner;
+    private ArrayAdapter<String> labelAdapter;
+    private ArrayList<String> allLabels=new ArrayList<>();
     private  ActivityResultLauncher<Intent> addDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
             ,result -> {
                 if(null!=result){
@@ -56,6 +67,29 @@ public class MainActivity extends AppCompatActivity {
                         shopItems.add(position, new ShopItem(title,author,translator,publisher,pubdate,isbn, R.drawable.book3) );
                         new DataSaver().Save(this,shopItems);
                         mainRecycleViewAdapter.notifyItemInserted(position);
+                    }
+                }
+            });
+    private  ActivityResultLauncher<Intent> addLabelLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
+            ,result -> {
+                if(null!=result){
+                    Intent intent=result.getData();
+                    if(result.getResultCode()==EditBookActivity.RESULT_CODE_SUCCESS)
+                    {
+                        Bundle bundle=intent.getExtras();
+                        String new_label= bundle.getString("label");
+                        Menu menu=navigationView.getMenu().getItem(2).getSubMenu();
+                        int i=menu.size();
+                        //给当前的标签菜单添加上新的标签
+                        menu.add(R.id.nav_group1,menu.getItem(0).getItemId()+i,Menu.NONE,new_label).setIcon(R.drawable.icon_label);
+                        //给label_spinner添加上新的标签
+                        //add_label_spinner=findViewById(R.id.label_spinner);
+                        //allLabels.add(new_label);
+                        //labelAdapter = new ArrayAdapter<String>(this,
+                                //android.R.layout.simple_spinner_dropdown_item,allLabels);
+                        //labelAdapter.setDropDownViewResource(
+                                //android.R.layout.simple_spinner_dropdown_item);
+                        //add_label_spinner.setAdapter(labelAdapter);
                     }
                 }
             });
@@ -139,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //2022/11/12 抽屉式菜单点击各个菜单项的响应函数
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -161,6 +195,8 @@ public class MainActivity extends AppCompatActivity {
                         //创建标签
                     case R.id.item_create_label:
                         Toast.makeText(MainActivity.this,"Create new labels clicked", Toast.LENGTH_SHORT).show();
+                        Intent intentAddLabel=new Intent(MainActivity.this, AddLabelActivity.class);
+                        addLabelLauncher.launch(intentAddLabel);
                         break;
                         //设置,跳转到设置界面
                     case R.id.item_settings:

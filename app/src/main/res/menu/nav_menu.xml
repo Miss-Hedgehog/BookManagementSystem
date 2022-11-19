@@ -1,51 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/nav_group1">
-        <item
-            android:id="@+id/item_books"
-            android:icon="@drawable/icon_books"
-            android:title="Books" />
-        <item
-            android:id="@+id/item_search"
-            android:icon="@drawable/icon_search"
-            android:title="Search" />
-    </group>
-
-    <item android:title="Labels">
+    <item
+        android:id="@+id/item_books"
+        android:icon="@drawable/icon_books"
+        android:title="Books" />
+    <item
+        android:id="@+id/item_search"
+        android:icon="@drawable/icon_search"
+        android:title="Search" />
+    <item android:title="Labels"
+        android:id="@+id/item_labels">
         <menu>
-            <group android:id="@+id/nav_group2">
+            <group android:id="@+id/nav_group1">
+                <item
+                    android:id="@+id/item_create_label"
+                    android:icon="@drawable/icon_create_label"
+                    android:title="Create new labels" />
                 <item
                 android:id="@+id/item_law"
                 android:icon="@drawable/icon_label"
                 android:title="Law" />
-                <item
-                android:id="@+id/item_create_label"
-                android:icon="@drawable/icon_create_label"
-                android:title="Create new labels" />
             </group>
         </menu>
     </item>
-
-    <group android:checkableBehavior="single">
     <item android:title="Extensions">
         <menu>
-            <group android:id="@+id/nav_group3">
+            <group android:id="@+id/nav_group2">
                 <item
-                android:id="@+id/item_settings"
-                android:icon="@drawable/icon_settings"
-                android:title="Settings" />
+                    android:id="@+id/item_settings"
+                    android:icon="@drawable/icon_settings"
+                    android:title="Settings" />
                 <item
-                android:id="@+id/item_about"
-                android:icon="@drawable/icon_about"
-                android:title="About" />
+                    android:id="@+id/item_about"
+                    android:icon="@drawable/icon_about"
+                    android:title="About" />
                 <item
-                android:id="@+id/item_share"
-                android:icon="@drawable/icon_share"
-                android:title="Share" />
+                    android:id="@+id/item_share"
+                    android:icon="@drawable/icon_share"
+                    android:title="Share" />
             </group>
         </menu>
     </item>
-    </group>
-
-
 </menu>

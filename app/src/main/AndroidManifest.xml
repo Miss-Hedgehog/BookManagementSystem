@@ -28,9 +28,13 @@
         android:theme="@style/Theme.BookManagementSystem"
         tools:targetApi="31">
         <activity
+            android:name=".AddLabelActivity"
+            android:exported="false"
+            android:label="Create new labels"/>
+        <activity
             android:name=".CaptureActivity"
             android:exported="false"
-            android:label="Scan Barcode" />
+            android:label="Scan barcode of book" />
         <activity
             android:name=".SettingActivity"
             android:exported="false"
