@@ -7,11 +7,16 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.jnu.bookmanagementsystem.data.DataSaver;
 
 public class LogInActivity extends AppCompatActivity {
     public Button btn;
+    private CheckBox checkbox2;
+    private CheckBox checkbox3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,33 @@ public class LogInActivity extends AppCompatActivity {
                             }
                         }).create();
                 alertDialog.show();
+            }
+        });
+
+        checkbox2 = (CheckBox) findViewById(R.id.checkBox2);
+        //通过设置checkbox的监听事件来对checkbox是不是被选中
+        checkbox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    //获得checkbox的文本内容
+                    String text = checkbox2.getText().toString();
+                    //显示消息
+                    Toast.makeText(getApplicationContext(),text+"，该checkbox已经被你选中。",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        checkbox3 = (CheckBox) findViewById(R.id.checkBox3);
+        //通过设置checkbox的监听事件来对checkbox是不是被选中
+        checkbox3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    //获得checkbox的文本内容
+                    String text = checkbox2.getText().toString();
+                    //显示消息
+                    Toast.makeText(getApplicationContext(),text+"，该checkbox已经被你选中。",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

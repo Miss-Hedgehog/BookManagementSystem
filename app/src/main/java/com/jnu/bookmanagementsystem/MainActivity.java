@@ -378,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_login:
-                Toast.makeText(this,"登陆", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"登陆", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, LogInActivity.class));
 
                 break;
