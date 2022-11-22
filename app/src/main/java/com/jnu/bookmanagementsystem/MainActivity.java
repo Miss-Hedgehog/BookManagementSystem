@@ -379,6 +379,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menu_login:
                 Toast.makeText(this,"登陆", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, LogInActivity.class));
+
                 break;
             case R.id.menu_exit:
                 Toast.makeText(this,"退出", Toast.LENGTH_SHORT).show();
