@@ -33,6 +33,7 @@ import android.widget.Toast;
 import java.security.acl.Group;
 import java.util.ArrayList;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.jnu.bookmanagementsystem.data.ShopItem;
@@ -223,6 +224,10 @@ public class MainActivity extends AppCompatActivity {
                         //分享
                     case R.id.item_share:
                         Toast.makeText(MainActivity.this,"Share clicked", Toast.LENGTH_SHORT).show();
+                        BottomSheetDialog bottomSheetDialog=new BottomSheetDialog(MainActivity.this);
+                        bottomSheetDialog.setTitle("Share with your friends");
+                        bottomSheetDialog.setContentView(R.layout.bottom_dialog);
+                        bottomSheetDialog.show();
                         break;
                     default:
                         break;

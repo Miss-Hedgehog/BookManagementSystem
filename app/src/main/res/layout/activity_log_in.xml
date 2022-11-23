@@ -94,16 +94,12 @@
             android:layout_marginLeft="150dp"
             android:text="记住密码" />
 
-        <TextView
-            android:id="@+id/tv_register"
+        <CheckBox
+            android:id="@+id/checkBox5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
-            android:text="找回密码"
-            android:textColor="#FFFFFFFF" />
-
+            android:layout_marginLeft="300dp"
+            android:text="找回密码" />
 
     </RelativeLayout>
 
@@ -121,7 +117,6 @@
         android:text="登录"
         android:textColor="#ffffff"
         android:textSize="20sp" />
-
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
