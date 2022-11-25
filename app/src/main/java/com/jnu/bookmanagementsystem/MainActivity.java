@@ -3,6 +3,7 @@ import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -10,6 +11,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -20,16 +23,20 @@ import android.view.ActionProvider;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.security.acl.Group;
 import java.util.ArrayList;
 
@@ -51,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner add_label_spinner;
     private ArrayAdapter<String> labelAdapter;
     private ArrayList<String> allLabels=new ArrayList<>();
+    private PopupMenu popupMenu;
     private  ActivityResultLauncher<Intent> addDataLauncher= registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
             ,result -> {
                 if(null!=result){
@@ -79,10 +87,15 @@ public class MainActivity extends AppCompatActivity {
                     {
                         Bundle bundle=intent.getExtras();
                         String new_label= bundle.getString("label");
+                        if(new_label.contains("bookshelf")){
+                            popupMenu.getMenu().add(Menu.NONE,Menu.NONE,0,new_label);
+                            popupMenu.show();
+                        }
                         Menu menu=navigationView.getMenu().getItem(2).getSubMenu();
                         int i=menu.size();
                         //给当前的标签菜单添加上新的标签
                         menu.add(R.id.nav_group1,menu.getItem(0).getItemId()+i,Menu.NONE,new_label).setIcon(R.drawable.icon_label);
+
                         //给label_spinner添加上新的标签
                         //add_label_spinner=findViewById(R.id.label_spinner);
                         //allLabels.add(new_label);
@@ -164,6 +177,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //用来选择书架，添加新建书架
+        Toolbar toolbar_bookshelf=findViewById(R.id.toolbar_all);
+        toolbar_bookshelf.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu(v);
+            }
+        });
+
         //点击扫描条形码的toolBar，实现扫描图书的isbn的功能
         Toolbar toolbar_scan=findViewById(R.id.toolbar_scan);
         toolbar_scan.setNavigationOnClickListener(new View.OnClickListener() {
@@ -172,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, CaptureActivity.class));
             }
         });
-
         //2022/11/12 抽屉式菜单点击各个菜单项的响应函数
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -395,5 +416,40 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    private void showPopupMenu(View view) {
+        // View当前PopupMenu显示的相对View的位置
+        popupMenu = new PopupMenu(this, view);
+        // menu布局
+        popupMenu.getMenuInflater().inflate(R.menu.all_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.all_create:
+                        //创建新的书架(可以利用之前写好的添加标签的那个函数)
+                        Intent intentAddLabel=new Intent(MainActivity.this, AddLabelActivity.class);
+                        addLabelLauncher.launch(intentAddLabel);
+                        break;
+                    default:
+                        Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+                        return false;
+                }
+                return false;
+            }
+        });
+        /*
+        try { //popupmenu显示icon的关键
+            Field mpopup=popupMenu.getClass().getDeclaredField("mPopup");
+            mpopup.setAccessible(true);
+            MenuPopupHelper mPopup = (MenuPopupHelper) mpopup.get(popupMenu);
+            mPopup.setForceShowIcon(true);
+        } catch (Exception e) {
+
+        }*/
+        popupMenu.show();
+    }
+
+
+
 
 }
