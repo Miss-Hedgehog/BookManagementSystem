@@ -437,12 +437,13 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         /*
         try { //popupmenu显示icon的关键
             Field mpopup=popupMenu.getClass().getDeclaredField("mPopup");
             mpopup.setAccessible(true);
             MenuPopupHelper mPopup = (MenuPopupHelper) mpopup.get(popupMenu);
-            mPopup.setForceShowIcon(true);
+            //mPopup.setForceShowIcon(true);
         } catch (Exception e) {
 
         }*/
